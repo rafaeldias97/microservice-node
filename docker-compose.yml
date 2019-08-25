@@ -5,9 +5,11 @@ services:
     container_name: mongodb
     ports:
       - "27017:27017"
+    networks:
+      - custom
     restart: always
-    volumes:
-      - ./data/db:/data/db
+    # volumes:
+    #   - ./data/db:/data/db
 
   msnode:
     container_name: msnode
@@ -16,10 +18,10 @@ services:
     volumes:
       - ./:/node-app
       - ./node_modules:/node-app/node_modules
-    depends_on:
-      - mongodb
     networks:
       - custom
+    depends_on:
+      - mongodb
     external_links:
       - rabbit:rabbit
     links:

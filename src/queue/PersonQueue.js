@@ -1,4 +1,8 @@
 const RabbitMQ = require("../service/RabbitMQ");
+const PersonRepository = require("../context/PersonRepository");
+const personRepository = new PersonRepository();
+
+let Person = require("../models/Person")
 
 module.exports = class PersonQueue {
     constructor (test = false) {
@@ -15,13 +19,17 @@ module.exports = class PersonQueue {
         }, 5000);
     }
 
-    SavePersonConsumer (msg) {
-        console.log(msg)
-        return msg
+    async SavePersonConsumer (msg) {
+        let _person = new Person(msg);
+        await personRepository.Post(_person);
+        return msg;
     }
 
     SavePersonPublisher () {
         new RabbitMQ({ address: 'amqp://guest:guest@rabbit:5672', q: "SavePerson"})
-            .publisher({ nome: "Rafael" });
+            .publisher({
+                name: "Rafael Dias",
+                email: "rafael.cdc97@gmail.com"
+            });
     }
 }

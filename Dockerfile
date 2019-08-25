@@ -10,6 +10,6 @@ RUN npm install nodemon -g --quiet
 
 COPY . . 
 
-EXPOSE 8000
+RUN npm run test
 
 CMD nodemon -L --watch . ./src/index.js
