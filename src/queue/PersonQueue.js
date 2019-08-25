@@ -1,7 +1,9 @@
 const RabbitMQ = require("../service/RabbitMQ");
 
 module.exports = class PersonQueue {
-    constructor () {
+    constructor (test = false) {
+        if (test) return true
+        
         new RabbitMQ({ 
             callback: this.SavePersonConsumer, // Function Tigger 
             address: 'amqp://guest:guest@rabbit:5672', // Address Queue
@@ -15,6 +17,7 @@ module.exports = class PersonQueue {
 
     SavePersonConsumer (msg) {
         console.log(msg)
+        return msg
     }
 
     SavePersonPublisher () {
