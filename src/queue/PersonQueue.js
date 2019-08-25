@@ -4,7 +4,7 @@ module.exports = class PersonQueue {
     constructor () {
         new RabbitMQ({ 
             callback: this.SavePersonConsumer, // Function Tigger 
-            address: 'amqp://guest:guest@localhost:5672', // Address Queue
+            address: 'amqp://guest:guest@rabbit:5672', // Address Queue
             q: "SavePerson" // Name Queue
         }).consumer();
 
@@ -18,7 +18,7 @@ module.exports = class PersonQueue {
     }
 
     SavePersonPublisher () {
-        new RabbitMQ({ address: 'amqp://guest:guest@localhost:5672', q: "SavePerson"})
+        new RabbitMQ({ address: 'amqp://guest:guest@rabbit:5672', q: "SavePerson"})
             .publisher({ nome: "Rafael" });
     }
 }

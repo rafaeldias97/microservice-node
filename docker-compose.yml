@@ -1,0 +1,31 @@
+version: "3"
+services:
+  mongodb:
+    image: "mongo:latest"
+    container_name: mongodb
+    ports:
+      - "27017:27017"
+    restart: always
+    volumes:
+      - ./data/db:/data/db
+
+  msnode:
+    container_name: msnode
+    build: .
+    image: msnode
+    volumes:
+      - ./:/node-app
+      - ./node_modules:/node-app/node_modules
+    depends_on:
+      - mongodb
+    networks:
+      - custom
+    external_links:
+      - rabbit:rabbit
+    links:
+      - mongodb
+    ports:
+      - "8000:8000"
+networks:
+  custom:
+    external: true

@@ -1,7 +1,7 @@
 const amqp = require('amqplib/callback_api');
 let _self = null
 module.exports = class RabbitMQ {
-    constructor({ callback, address = 'amqp://guest:guest@w3rabbit:5672', q, durable = true }) {
+    constructor({ callback, address = 'amqp://guest:guest@rabbit:5672', q, durable = true }) {
         this.callback = callback;
         this.address = address;
         this.q = q;
