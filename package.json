@@ -1,0 +1,21 @@
+{
+  "name": "ms-teste",
+  "version": "1.0.0",
+  "description": "",
+  "main": "cross-env NODE_ENV=test index.js",
+  "scripts": {
+    "test": "cross-env NODE_ENV=test jest",
+    "prod": "cross-env NODE_ENV=prod nodemon -L --watch . index.js",
+    "dev": "cross-env NODE_ENV=test nodemon -L --watch . index.js"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "amqp": "^0.2.7",
+    "cross-env": "^6.0.0",
+    "dotenv": "^8.1.0",
+    "jest": "^24.9.0",
+    "mongoose": "^5.7.1"
+  }
+}

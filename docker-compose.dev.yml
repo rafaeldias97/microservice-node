@@ -1,0 +1,34 @@
+version: "3"
+services:
+  db-teste:
+    image: "mongo:latest"
+    container_name: db-teste
+    ports:
+      - "27031:27017"
+    networks:
+      - custom
+    restart: always
+    # volumes:
+    #   - /srv/docker/jenkins_home/volumes/contadigital/saldo:/data/db
+
+  ms-teste:
+    container_name: ms-teste
+    build: 
+      context: .
+      dockerfile: ./Dockerfile.dev
+    image: ms-teste
+    volumes:
+      - ./:/node-app
+      - ./node_modules:/node-app/node_modules
+    networks:
+      - custom
+    depends_on:
+      - db-teste
+    external_links:
+      - rabbit:rabbit
+    links:
+      - db-teste
+
+networks:
+  custom:
+    external: true
