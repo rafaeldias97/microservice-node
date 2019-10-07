@@ -15,9 +15,6 @@ services:
     container_name: ms-teste
     build: .
     image: ms-teste
-    # volumes:
-    #   - ./:/node-app
-    #   - ./node_modules:/node-app/node_modules
     networks:
       - custom
     depends_on:

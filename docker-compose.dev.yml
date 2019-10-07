@@ -8,8 +8,6 @@ services:
     networks:
       - custom
     restart: always
-    # volumes:
-    #   - /srv/docker/jenkins_home/volumes/contadigital/saldo:/data/db
 
   ms-teste:
     container_name: ms-teste
