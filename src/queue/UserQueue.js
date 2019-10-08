@@ -12,7 +12,7 @@ class UserQueue {
             new Rabbit({ callback: this.getAllUser, address: process.env.RABBITMQ, q: 'user.get' }).rpcRabbit()
 
             setTimeout(() => {
-                new Rabbit({ address: process.env.RABBITMQ, q: 'user.deleteAll' }).publisher({})
+                new Rabbit({ address: process.env.RABBITMQ, q: 'user.deleteAll' }).publisher()
             }, 3000)
             setTimeout(() => {
                 // Exemplo publisher
@@ -26,7 +26,7 @@ class UserQueue {
                 new Rabbit({ callback: (msg) => {
                     console.log('msg => ', msg)
                 }, address: process.env.RABBITMQ, q: 'user.get' })
-                    .rpcPublisher({})
+                    .rpcPublisher()
             }, 5000)
         }
     }

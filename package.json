@@ -16,6 +16,6 @@
     "dotenv": "^8.1.0",
     "jest": "^24.9.0",
     "mongoose": "^5.7.1",
-    "rabbit-lib-node": "^1.0.0"
+    "rabbit-lib-node": "^1.0.1"
   }
 }
