@@ -12,10 +12,15 @@ beforeAll(async () => {
 });
 
 test('Create user', async () => {
-  let data = { name: "Rafael Dias", pass: "123456" }
+  let data = { name: "User Name", pass: "123456" }
   let res = await userQueue.createUser(data);
   res = { name: res.name, pass: res.pass };
   expect(res).toEqual(data);
+});
+
+test('Get all user', async () => {
+  let res = await userQueue.getAllUser();
+  expect(res.length).toBeGreaterThan(0);
 });
 
 // Disconnect Mongoose

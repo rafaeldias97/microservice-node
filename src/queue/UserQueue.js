@@ -4,25 +4,25 @@ const Rabbit = require('rabbit-lib-node');
 class UserQueue {
     constructor (test = false ) {
         if (!test) {
-            // Exemplo consumer
+            // Example consumer
             new Rabbit({ callback: this.createUser, address: process.env.RABBITMQ, q: 'user.create' }).consumer()
             new Rabbit({ callback: this.dropAllUser, address: process.env.RABBITMQ, q: 'user.deleteAll' }).consumer()
 
-            // Exemplo rpcConsumer
+            // Example rpcConsumer
             new Rabbit({ callback: this.getAllUser, address: process.env.RABBITMQ, q: 'user.get' }).rpcRabbit()
 
             setTimeout(() => {
                 new Rabbit({ address: process.env.RABBITMQ, q: 'user.deleteAll' }).publisher()
             }, 3000)
             setTimeout(() => {
-                // Exemplo publisher
+                // Example publisher
                 new Rabbit({ address: process.env.RABBITMQ, q: 'user.create' })
                     .publisher({
                         name: 'User Name',
                         pass: '123456'
                     })
 
-                // Exemplo rpc publisher
+                // Example rpc publisher
                 new Rabbit({ callback: (msg) => {
                     console.log('msg => ', msg)
                 }, address: process.env.RABBITMQ, q: 'user.get' })
@@ -32,7 +32,7 @@ class UserQueue {
     }
 
     async dropAllUser () {
-        await User.deleteMany({}, () => console.log('todos os usuarios deletados'))
+        await User.deleteMany({}, () => console.log('All user was deleted'))
     }
 
     async createUser (msg) {

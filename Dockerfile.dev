@@ -10,6 +10,6 @@ RUN npm install nodemon -g --quiet
 
 COPY . .
 
-# RUN npm run test
+RUN npm run test
 
 CMD npm run dev
