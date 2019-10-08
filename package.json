@@ -12,10 +12,10 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "amqp": "^0.2.7",
     "cross-env": "^6.0.0",
     "dotenv": "^8.1.0",
     "jest": "^24.9.0",
-    "mongoose": "^5.7.1"
+    "mongoose": "^5.7.1",
+    "rabbit-lib-node": "^1.0.0"
   }
 }

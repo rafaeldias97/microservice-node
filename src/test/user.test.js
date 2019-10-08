@@ -20,6 +20,6 @@ test('Create user', async () => {
 
 // Disconnect Mongoose
 afterAll(async () => {
-  await User.deleteMany()
+  await User.deleteMany({}, () => console.log(''))
   await mongoose.connection.close()
 });
